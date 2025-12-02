@@ -11,12 +11,15 @@ body {
     font-family: 'Courier New', monospace;
     line-height: 1.4;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 main {
     max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
+    overflow-x: hidden;
 }
 
 pre {
@@ -25,6 +28,7 @@ pre {
     font-family: inherit;
     margin: 0;
     font-size: 16px;
+    max-width: 100%;
 }
 
 /* Links */
@@ -80,6 +84,10 @@ body.night {
     color: #eeffcc;
 }
 
+body.night .content-section {
+    background-color: #000000;
+}
+
 body.night a {
     color: #4d8061;
 }
@@ -119,6 +127,10 @@ body.night #night.selected span {
 body.day {
     background-color: #eeffcc;
     color: #305d42;
+}
+
+body.day .content-section {
+    background-color: #eeffcc;
 }
 
 body.day a {
@@ -203,34 +215,59 @@ html {
 
 /* Selection */
 ::selection {
-    background-color: #00ff00;
+    background-color: #89a257;
     color: #000000;
 }
 
 body.day ::selection {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #305d42;
+    color: #eeffcc;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body.size-1 main pre,
     body.size-1 .content-section pre {
-        font-size: 10px !important;
+        font-size: 8px !important;
     }
     
     body.size-2 main pre,
     body.size-2 .content-section pre {
-        font-size: 14px !important;
+        font-size: 10px !important;
     }
     
     body.size-3 main pre,
     body.size-3 .content-section pre {
-        font-size: 16px !important;
+        font-size: 12px !important;
     }
     
     main {
+        padding: 5px;
+    }
+    
+    pre {
+        white-space: pre;
+        word-wrap: normal;
+        overflow-x: auto;
+    }
+    
+    /* Make ASCII art scale down */
+    .ascii-block {
+        font-size: 0.8em;
+    }
+    
+    /* Content sections on mobile */
+    .content-section pre {
         padding: 10px;
+        font-size: 10px;
+    }
+    
+    .back-link {
+        position: sticky;
+        top: 0;
+        background-color: inherit;
+        padding: 10px 0;
+        z-index: 10;
     }
 }
 
@@ -296,11 +333,20 @@ body.day .ascii-block:hover {
     color: #ffffff;
 }
 
-/* Content sections - hidden by default */
+/* Content sections - Full page overlays */
 .content-section {
     display: none;
     padding: 0;
     margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: inherit;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
 }
 
 .content-section.active {
@@ -309,6 +355,7 @@ body.day .ascii-block:hover {
 
 .content-section pre {
     padding: 20px;
+    min-height: 100vh;
 }
 
 .main-content {
@@ -325,6 +372,8 @@ body.day .ascii-block:hover {
     margin-bottom: 20px;
     font-weight: bold;
     cursor: pointer;
+    font-size: 1.1em;
+    text-decoration: none;
 }
 
 .back-link:hover {
@@ -357,7 +406,7 @@ body.night ::-webkit-scrollbar-thumb {
 }
 
 body.night ::-webkit-scrollbar-thumb:hover {
-    background: #1e3a29;
+    background: #305d42;
 }
 
 body.day ::-webkit-scrollbar-track {
@@ -366,12 +415,12 @@ body.day ::-webkit-scrollbar-track {
 }
 
 body.day ::-webkit-scrollbar-thumb {
-    background: #000000;
+    background: #4d8061;
     border: 1px solid #eeffcc;
 }
 
 body.day ::-webkit-scrollbar-thumb:hover {
-    background: #333333;
+    background: #305d42;
 }
 
 /* For Firefox */
@@ -381,6 +430,6 @@ body.night {
 }
 
 body.day {
-    scrollbar-color: #1e3a29 #eeffcc;
+    scrollbar-color: #4d8061 #eeffcc;
     scrollbar-width: thin;
 }
