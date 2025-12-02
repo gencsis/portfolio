@@ -1,0 +1,386 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    line-height: 1.4;
+    overflow-x: hidden;
+}
+
+main {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+pre {
+    white-space: pre;
+    overflow-x: auto;
+    font-family: inherit;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Font Sizes */
+body.size-1 main pre,
+body.size-1 .content-section pre {
+    font-size: 12px !important;
+}
+
+body.size-2 main pre,
+body.size-2 .content-section pre {
+    font-size: 16px !important;
+}
+
+body.size-3 main pre,
+body.size-3 .content-section pre {
+    font-size: 20px !important;
+}
+
+/* Font Families */
+body {
+    font-family: 'Courier New', Courier, monospace; /* default */
+}
+
+body.font-jgs5 {
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+body.font-jgs7 {
+    font-family: 'Lucida Console', 'Monaco', monospace;
+}
+
+body.font-jgs9 {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+/* Color Themes */
+
+/* Night Mode (Default) */
+body.night {
+    background-color: #000000;
+    color: #eeffcc;
+}
+
+body.night a {
+    color: #4d8061;
+}
+
+body.night a:hover {
+    color: #bedc7f;
+}
+
+body.night .marquee {
+    color: #bedc7f;
+}
+
+body.night #jgs5 span,
+body.night #jgs7 span,
+body.night #jgs9 span,
+body.night #x1 span,
+body.night #x2 span,
+body.night #x3 span,
+body.night #day span,
+body.night #night span {
+    color: #00ff00;
+}
+
+body.night #jgs5.selected span,
+body.night #jgs7.selected span,
+body.night #jgs9.selected span,
+body.night #x1.selected span,
+body.night #x2.selected span,
+body.night #x3.selected span,
+body.night #day.selected span,
+body.night #night.selected span {
+    background-color: #89a257;
+    color: #000000;
+}
+
+/* Day Mode */
+body.day {
+    background-color: #eeffcc;
+    color: #305d42;
+}
+
+body.day a {
+    color: #112318;
+}
+
+body.day a:hover {
+    color: #4d8061;
+}
+
+body.day .marquee {
+    color: #4d8061;
+}
+
+body.day #jgs5 span,
+body.day #jgs7 span,
+body.day #jgs9 span,
+body.day #x1 span,
+body.day #x2 span,
+body.day #x3 span,
+body.day #day span,
+body.day #night span {
+    color: #000000;
+}
+
+body.day #jgs5.selected span,
+body.day #jgs7.selected span,
+body.day #jgs9.selected span,
+body.day #x1.selected span,
+body.day #x2.selected span,
+body.day #x3.selected span,
+body.day #day.selected span,
+body.day #night.selected span {
+    background-color: #89a257;
+    color: #ffffff;
+}
+
+/* Checkbox/Radio simulation */
+#jgs5 span,
+#jgs7 span,
+#jgs9 span,
+#x1 span,
+#x2 span,
+#x3 span,
+#day span,
+#night span {
+    display: inline-block;
+    width: 1ch;
+    text-align: center;
+}
+
+#jgs5.selected span::before,
+#jgs7.selected span::before,
+#jgs9.selected span::before,
+#x1.selected span::before,
+#x2.selected span::before,
+#x3.selected span::before,
+#day.selected span::before,
+#night.selected span::before {
+    content: 'X';
+}
+
+/* Marquee Animation */
+.marquee {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+    background-color: #00ff00;
+    color: #000000;
+}
+
+body.day ::selection {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body.size-1 main pre,
+    body.size-1 .content-section pre {
+        font-size: 10px !important;
+    }
+    
+    body.size-2 main pre,
+    body.size-2 .content-section pre {
+        font-size: 14px !important;
+    }
+    
+    body.size-3 main pre,
+    body.size-3 .content-section pre {
+        font-size: 16px !important;
+    }
+    
+    main {
+        padding: 10px;
+    }
+}
+
+/* Fade in animation */
+body {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Accessibility */
+a:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    a {
+        color: black;
+    }
+    
+    .marquee {
+        animation: none;
+    }
+}
+
+/* ASCII Block Styles */
+.ascii-block {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    padding: 0;
+    margin: 0;
+}
+
+.ascii-block:hover {
+    text-decoration: none;
+}
+
+/* Night mode ASCII block hover */
+body.night .ascii-block:hover {
+    background-color: #305d42;
+    color: #000000;
+}
+
+/* Day mode ASCII block hover */
+body.day .ascii-block:hover {
+    background-color: #4d8061;
+    color: #ffffff;
+}
+
+/* Content sections - hidden by default */
+.content-section {
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.content-section pre {
+    padding: 20px;
+}
+
+.main-content {
+    display: block;
+}
+
+.main-content.hidden {
+    display: none;
+}
+
+/* Back link styling */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+body.night .back-link {
+    color: #4d8061;
+}
+
+body.day .back-link {
+    color: #040c06;
+}
+
+/* Custom Scrollbar Styling */
+/* For Chrome, Safari, Edge */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+body.night ::-webkit-scrollbar-track {
+    background: #000000;
+    border-left: 1px solid #040c06;
+}
+
+body.night ::-webkit-scrollbar-thumb {
+    background: #1e3a29;
+    border: 1px solid #000000;
+}
+
+body.night ::-webkit-scrollbar-thumb:hover {
+    background: #1e3a29;
+}
+
+body.day ::-webkit-scrollbar-track {
+    background: #eeffcc;
+    border-left: 1px solid #000000;
+}
+
+body.day ::-webkit-scrollbar-thumb {
+    background: #000000;
+    border: 1px solid #eeffcc;
+}
+
+body.day ::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+}
+
+/* For Firefox */
+body.night {
+    scrollbar-color: #1e3a29 #000000;
+    scrollbar-width: thin;
+}
+
+body.day {
+    scrollbar-color: #1e3a29 #eeffcc;
+    scrollbar-width: thin;
+}
