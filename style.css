@@ -34,6 +34,7 @@ button {
     font: inherit;
 }
 
+/* ── PAGE & SHELL ── */
 .page {
     min-height: 100vh;
     padding: 22px 28px 36px;
@@ -48,6 +49,51 @@ button {
     z-index: 2;
 }
 
+/* ── FISH LAYER ── */
+#fish-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Each fish is positioned absolutely inside the fixed layer */
+.fish-sprite {
+    position: absolute;
+    pointer-events: none;
+}
+
+.fish-sprite img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%);
+    opacity: 0.76;
+}
+
+/* Default resting positions — match your original layout */
+#fish-a {
+    width: min(18vw, 180px);
+    top: 20px;
+    left: -6px;
+}
+
+#fish-b {
+    width: min(22vw, 240px);
+    top: 250px;
+    right: -12px;
+    left: auto;
+}
+
+#fish-c {
+    width: min(38vw, 420px);
+    bottom: 34px;
+    left: -36px;
+}
+
+/* ── NAV ── */
 .nav {
     display: flex;
     justify-content: flex-end;
@@ -60,6 +106,7 @@ button {
 .nav-link {
     font-weight: 700;
     font-size: clamp(1rem, 1.3vw, 1.7rem);
+    cursor: pointer;
 }
 
 .nav-link.active {
@@ -103,6 +150,7 @@ body:not(.light) .moon-icon {
     display: inline-flex;
 }
 
+/* ── TYPOGRAPHY ── */
 .hero-title,
 .section-title {
     font-weight: 800;
@@ -117,85 +165,65 @@ body:not(.light) .moon-icon {
 }
 
 .subtitle {
-    margin: 0 0 44px 26px;
-    font-size: clamp(1.2rem, 1.9vw, 2.15rem);
+    margin: 0 0 36px 26px;
+    font-size: clamp(1.05rem, 1.7vw, 1.9rem);
     font-weight: 700;
     line-height: 1.45;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 22px;
-    align-items: start;
-}
-
-.lead,
-.contact-card,
-.experience-list,
-.project-list {
-    font-size: clamp(1.1rem, 1.6vw, 2rem);
-    line-height: 1.7;
-    font-weight: 600;
-}
-
-.lead {
-    padding-left: 26px;
-}
-
-.lead p,
-.contact-card p {
-    margin: 0 0 36px;
-    max-width: 860px;
-}
-
-.contact-card a {
     color: var(--accent);
 }
 
+/* ── HOME LEAD ── */
+.lead {
+    padding-left: 26px;
+    font-size: clamp(1rem, 1.5vw, 1.7rem);
+    line-height: 1.7;
+    font-weight: 500;
+    max-width: 820px;
+}
+
+.lead p {
+    margin: 0 0 20px;
+}
+
+/* ── CONTACT CARD ── */
 .contact-card {
-    margin-top: 44px;
+    margin-top: 52px;
 }
 
 .contact-title {
-    font-size: clamp(1.2rem, 1.8vw, 2.1rem);
+    font-size: clamp(1rem, 1.4vw, 1.6rem);
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 }
 
-.fish {
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.76;
-    z-index: 1;
+.contact-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.fish img {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: grayscale(100%);
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text);
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.fish-top-left {
-    width: min(18vw, 180px);
-    top: 20px;
-    left: -6px;
+.contact-icon:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
 }
 
-.fish-mid-right {
-    width: min(22vw, 240px);
-    top: 250px;
-    right: -12px;
+.contact-icon svg {
+    width: 28px;
+    height: 28px;
 }
 
-.fish-bottom-left {
-    width: min(38vw, 420px);
-    left: -36px;
-    bottom: 34px;
-}
-
+/* ── VIEWS ── */
 .view {
     display: none;
     animation: fadeIn 0.2s ease;
@@ -205,64 +233,148 @@ body:not(.light) .moon-icon {
     display: block;
 }
 
+/* ── SECTION TITLE ── */
 .section-title {
     margin: 28px 0 34px 44px;
 }
 
-.experience-list,
-.project-list {
-    padding: 0 44px 80px;
+/* ── TIMELINE ── */
+.timeline {
+    position: relative;
+    padding: 8px 44px 80px 72px;
+    font-size: clamp(1rem, 1.5vw, 1.6rem);
+    line-height: 1.7;
+    font-weight: 500;
 }
 
-.experience-item,
-.project-item {
-    margin-bottom: 34px;
+.timeline-track {
+    position: absolute;
+    left: 44px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--text);
+    opacity: 0.18;
 }
 
-.entry-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 18px;
-    margin-bottom: 6px;
-    flex-wrap: wrap;
+/* Upward arrow at top of line */
+.timeline-arrow-top {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid var(--text);
+    opacity: 1;
 }
 
-.entry-title {
-    flex: 1 1 500px;
+/* Downward arrow at bottom of line */
+.timeline-arrow-bottom {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--text);
+    opacity: 1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 44px;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tl-date {
+    font-size: 0.85em;
+    font-weight: 700;
+    opacity: 0.55;
+    margin-bottom: 2px;
+}
+
+.tl-role {
     font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 10px;
+    line-height: 1.3;
 }
 
-.entry-date {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    font-weight: 800;
-}
-
+/* ── ENTRY LINES (shared) ── */
 .entry-lines {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: 1.1rem;
+    font-size: 0.9em;
+    opacity: 0.85;
 }
 
 .entry-lines li::before {
     content: "- ";
 }
 
+/* ── PROJECTS ── */
+.project-list {
+    padding: 0 44px 80px;
+    font-size: clamp(1rem, 1.5vw, 1.6rem);
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+.project-item {
+    margin-bottom: 44px;
+}
+
+.entry-title {
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.badge {
+    font-weight: 600;
+    font-size: 0.85em;
+}
+
+.project-desc {
+    margin: 0 0 10px;
+    font-size: 0.95em;
+}
+
+.project-meta {
+    font-size: 0.85em;
+    opacity: 0.65;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
 .project-link {
     display: inline-block;
-    margin-top: 4px;
-    text-decoration: underline;
-    text-underline-offset: 5px;
-    font-size: 1rem;
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-weight: 700;
     color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
-.project-link::before {
-    content: "► ";
+.project-link:hover {
+    opacity: 0.75;
 }
 
+/* ── MOBILE NAV ── */
 .mobile-nav {
     display: none;
     justify-content: space-between;
@@ -289,13 +401,8 @@ body:not(.light) .moon-icon {
     transition: transform 0.25s ease, top 0.25s ease;
 }
 
-.menu-toggle span:first-child {
-    top: 14px;
-}
-
-.menu-toggle span:last-child {
-    top: 24px;
-}
+.menu-toggle span:first-child { top: 14px; }
+.menu-toggle span:last-child  { top: 24px; }
 
 .menu-toggle.active span:first-child {
     top: 19px;
@@ -311,15 +418,15 @@ body:not(.light) .moon-icon {
     display: none;
 }
 
+/* ── ANIMATIONS ── */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-    .page {
-        padding: 18px 14px 28px;
-    }
+    .page { padding: 18px 14px 28px; }
 
     .nav {
         gap: 14px;
@@ -327,119 +434,82 @@ body:not(.light) .moon-icon {
     }
 
     .hero-title,
-    .section-title,
+    .section-title { margin-left: 18px; }
+
     .subtitle,
-    .lead {
-        margin-left: 18px;
-        padding-left: 0;
-    }
+    .lead { margin-left: 18px; padding-left: 0; }
 
-    .subtitle {
-        margin-bottom: 32px;
-    }
+    .subtitle { margin-bottom: 28px; }
 
-    .content-grid {
-        grid-template-columns: 1fr;
-    }
+    .timeline { padding: 8px 18px 80px 56px; }
+    .timeline-track { left: 28px; }
 
-    .lead,
-    .contact-card,
-    .experience-list,
-    .project-list {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
+    .project-list { padding: 0 18px 110px; }
 
-    .experience-list,
-    .project-list {
-        padding: 0 18px 110px;
-    }
-
-    .fish-top-left {
-        width: 110px;
-        top: 48px;
-    }
-
-    .fish-mid-right {
-        width: 130px;
-        top: 250px;
-        right: -20px;
-    }
-
-    .fish-bottom-left {
-        width: 240px;
-        bottom: 24px;
-        left: -34px;
-    }
+    #fish-a { width: 110px; top: 48px; }
+    #fish-b { width: 130px; top: 250px; right: -20px; }
+    #fish-c { width: 240px; bottom: 24px; left: -34px; }
 }
 
 @media (max-width: 620px) {
-    .nav {
-        display: none;
-    }
+    .nav { display: none; }
 
-    .mobile-nav {
-        display: flex;
-    }
+    .mobile-nav { display: flex; }
 
     .mobile-menu {
         display: none;
         flex-direction: column;
-        gap: 14px;
-        margin-bottom: 18px;
+        gap: 10px;
+        margin-bottom: 14px;
         padding: 0 8px;
     }
 
-    .mobile-menu.open {
-        display: flex;
-    }
-
-    .mobile-menu .nav-link {
-        font-size: 1rem;
-    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link { font-size: 0.85rem; }
 
     .hero-title,
-    .section-title {
-        font-size: 2.2rem;
-    }
+    .section-title { font-size: 1.7rem; }
 
-    .subtitle {
-        font-size: 1rem;
-    }
+    .subtitle { font-size: 0.8rem; margin-bottom: 20px; }
 
-    .hero-title {
-        margin: 6px 0 10px 8px;
-    }
-
-    .section-title {
-        margin: 20px 0 26px 8px;
-    }
+    .hero-title { margin: 6px 0 6px 8px; }
+    .section-title { margin: 16px 0 20px 8px; }
 
     .subtitle,
+    .lead { margin-left: 8px; }
+
     .lead {
-        margin-left: 8px;
+        font-size: 0.82rem;
+        line-height: 1.6;
     }
 
-    .experience-list,
+    .lead p { margin-bottom: 12px; }
+
+    .contact-title { font-size: 0.8rem; }
+
+    .contact-icon svg { width: 22px; height: 22px; }
+    .contact-icons { gap: 14px; }
+
+    .timeline {
+        padding: 8px 8px 100px 44px;
+        font-size: 0.82rem;
+    }
+    .timeline-track { left: 20px; }
+
+    .tl-date { font-size: 0.75rem; }
+    .tl-role { font-size: 0.82rem; }
+    .entry-lines { font-size: 0.78rem; }
+
     .project-list {
         padding: 0 8px 120px;
+        font-size: 0.82rem;
     }
 
-    .entry-head {
-        display: block;
-    }
+    .entry-title { font-size: 0.85rem; }
+    .project-desc { font-size: 0.8rem; }
+    .project-meta { font-size: 0.75rem; }
+    .project-link { font-size: 0.78rem; }
 
-    .entry-date {
-        display: block;
-        margin-top: 4px;
-    }
-
-    .fish-mid-right {
-        top: 250px;
-        width: 120px;
-    }
-
-    .fish-bottom-left {
-        width: 210px;
-    }
+    #fish-b { width: 120px; top: 250px; }
+    #fish-c { width: 210px; }
 }
